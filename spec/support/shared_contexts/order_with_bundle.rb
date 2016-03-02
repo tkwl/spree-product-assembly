@@ -8,6 +8,6 @@ shared_context "product is ordered as individual and within a bundle" do
   let(:common_product) { order.variants.last }
 
   before do
-    bundle.parts << [parts, common_product]
+    bundle.master.parts << [parts, common_product]
   end
 end

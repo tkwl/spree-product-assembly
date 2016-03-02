@@ -13,7 +13,7 @@ RSpec.feature "Checkout", type: :feature do
 
   stub_authorization!
 
-  background { product.parts.push variant }
+  background { product.master.parts.push variant }
 
   shared_context "purchases product with part included" do
     background do
@@ -162,7 +162,7 @@ RSpec.feature "Checkout", type: :feature do
       visit spree.root_path
       click_link bundle.name
 
-      first_selectable = bundle.assemblies_parts.first.id
+      first_selectable = bundle.master.parts_variants.first.id
 
       within("#options_selected_variants_#{first_selectable}") do
         expect(page).to have_css("option[value='#{red.id}']")

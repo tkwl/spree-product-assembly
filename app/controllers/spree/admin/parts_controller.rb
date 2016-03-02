@@ -2,7 +2,7 @@ class Spree::Admin::PartsController < Spree::Admin::BaseController
   helper_method :product
 
   def index
-    @parts = product.assemblies_parts
+    @parts = product.assemblies_parts.includes(:assembly, :part)
   end
 
   def remove
@@ -52,7 +52,8 @@ class Spree::Admin::PartsController < Spree::Admin::BaseController
     def new_part_params
       params.require(:assemblies_part).permit(
         :count,
-        :variant_id,
+        :part_id,
+        :assembly_id,
         :variant_selection_deferred
       )
     end

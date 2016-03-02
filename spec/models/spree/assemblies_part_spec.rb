@@ -4,7 +4,7 @@ module Spree
     let(:variant) { create(:variant) }
 
     before do
-      product.parts.push variant
+      product.master.parts.push variant
     end
 
     context "get" do

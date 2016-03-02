@@ -37,7 +37,7 @@ module Spree
           bundle = create(:product)
           part = create(:product, can_be_part: true)
 
-          part_options = { count: 2, variant_id: part.id }
+          part_options = { count: 2, part_id: part.id, assembly_id: bundle.id }
 
           command = AssignPartToBundleForm.new(bundle, part_options)
 

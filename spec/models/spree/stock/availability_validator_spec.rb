@@ -33,7 +33,7 @@ module Spree
         let(:product) { line_item.product }
         let(:variant) { line_item.variant }
         let(:parts) { (1..2).map { create(:variant) } }
-        before { product.parts << parts }
+        before { product.master.parts << parts }
 
         subject { described_class.new }
 

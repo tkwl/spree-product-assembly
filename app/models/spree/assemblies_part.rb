@@ -1,6 +1,6 @@
 module Spree
   class AssembliesPart < ActiveRecord::Base
-    belongs_to :assembly, class_name: "Spree::Product",
+    belongs_to :assembly, class_name: "Spree::Variant",
                           foreign_key: "assembly_id",
                           touch: true
 

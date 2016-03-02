@@ -4,6 +4,7 @@
     <tr>
       <th><%= Spree.t(:name) %></th>
       <th><%= Spree.t(:options) %></th>
+      <th><%= Spree.t(:variants) %></th>
       <th><%= Spree.t(:qty) %></th>
       <th></th>
     </tr>
@@ -19,13 +20,18 @@
             <%- opts = part.variants.map {|v| [variant_options(v), v.id] } %>
             <%= select_tag "part[id]",
               options_for_select(opts),
-              include_blank: Spree.t(:user_selectable)
+              include_blank: Spree.t(:user_selectable), class: 'part_selector'
             %>
           <% else %>
             <%= hidden_field_tag "part[id]", part.master.id %>
             <%= Spree.t(:no_variants) %>
           <% end %>
         </td>
+        <% unless product.has_variants? %>
+          <td><%= hidden_field_tag "part[assembly_id]", product.master.id, class: 'parts-assembly' %>Master</td>
+        <% else %>
+          <td><%= select_tag "part[assembly_id]", options_from_collection_for_select(product.variants, "id", "options_text") %></td>
+        <% end %>
         <td><%= text_field_tag "part[count]", 1 %></td>
         <td class="actions">
           <%= image_tag "spinner.gif", :style => "display:none", :class => "spinner" %>

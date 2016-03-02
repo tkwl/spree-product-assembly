@@ -16,7 +16,7 @@ module Spree
       let(:parts) { (1..2).map { create(:variant) } }
 
       before do
-        product.parts << parts
+        product.master.parts << parts
         order.create_proposed_shipments
         order.finalize!
       end

@@ -7,7 +7,7 @@ module Spree
       context "with bundle line item" do
         let(:bundle) { create(:variant) }
         let!(:parts) { (1..2).map { create(:variant) } }
-        let!(:bundle_parts) { bundle.product.parts << parts }
+        let!(:bundle_parts) { bundle.parts << parts }
         let!(:line_item) { order.contents.add(bundle, 1) }
         let!(:shipment) { order.create_proposed_shipments.first }
         let(:serialized_shipment) { JSON.parse(AssemblyShipmentSerializer.new(shipment, root: false).to_json) }

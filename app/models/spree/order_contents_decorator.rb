@@ -26,7 +26,7 @@ module Spree
         tap do |line_item|
         populate_part_line_items(
           line_item,
-          variant.product.assemblies_parts,
+          variant.parts_variants,
           options["selected_variants"]
         )
       end
@@ -64,7 +64,7 @@ module Spree
 
     def variant_id_for(part, selected_variants)
       if part.variant_selection_deferred?
-        selected_variants[part.id.to_s]
+        selected_variants[part.part.id.to_s]
       else
         part.part.id
       end

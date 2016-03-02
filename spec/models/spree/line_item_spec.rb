@@ -9,7 +9,7 @@ module Spree
     context "bundle parts stock" do
       let(:parts) { (1..2).map { create(:variant) } }
 
-      before { product.parts << parts }
+      before { product.master.parts << parts }
 
       context "one of them not in stock" do
         before do
@@ -46,7 +46,7 @@ module Spree
       let(:parts) { (1..2).map { create(:variant) } }
 
       before do
-        product.parts << parts
+        product.master.parts << parts
         order.create_proposed_shipments
         order.finalize!
       end

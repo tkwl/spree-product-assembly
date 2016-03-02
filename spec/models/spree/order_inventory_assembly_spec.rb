@@ -280,7 +280,7 @@ module Spree
 
         product = create(:product_in_stock, product_properties)
 
-        assemblies_part_attributes = { assembly: bundle }.merge(part)
+        assemblies_part_attributes = { assembly: bundle.master }.merge(part)
 
         if part[:variant_selection_deferred]
           create(:variant_in_stock, product: product,
