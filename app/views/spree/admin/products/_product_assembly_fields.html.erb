@@ -1,6 +1,6 @@
 <div data-hook="admin_product_form_can_be_part">
   <%= f.field_container :can_be_part, class: ['form-group'] do %>
-    <%= f.label Spree.t('.can_be_part') %>
+    <%= f.label "Can Be Part" %>
     <%= f.error_message_on :can_be_part %>
     <%= f.check_box :can_be_part %>
   <% end %>
@@ -8,7 +8,7 @@
 
 <div data-hook="admin_product_form_individual_sale">
   <%= f.field_container :individual_sale, class: ['form-group'] do %>
-    <%= f.label Spree.t('.individual_sale') %>
+    <%= f.label "Individual Sale" %>
     <%= f.error_message_on :individual_sale %>
     <%= f.check_box :individual_sale %>
   <% end %>
