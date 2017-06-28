@@ -1,7 +1,9 @@
 Spree::Variant.class_eval do
-  has_and_belongs_to_many  :assemblies, :class_name => "Spree::Product",
-        :join_table => "spree_assemblies_parts",
-        :foreign_key => "part_id", :association_foreign_key => "assembly_id"
+  has_many :parts_variants, class_name: "Spree::AssembliesPart", foreign_key: "assembly_id"
+  has_many :assemblies_variants, class_name: "Spree::AssembliesPart", foreign_key: "part_id"
+
+  has_many :assemblies, through: :assemblies_variants, class_name: "Spree::Variant", dependent: :destroy
+  has_many :parts, through: :parts_variants, class_name: "Spree::Variant", dependent: :destroy
 
   def assemblies_for(products)
     assemblies.where(id: products)

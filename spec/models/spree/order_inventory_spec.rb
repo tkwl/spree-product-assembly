@@ -11,7 +11,7 @@ module Spree
 
       let(:bundle) { create(:product) }
 
-      before { bundle.parts.push [guitar, bass] }
+      before { bundle.master.parts.push [guitar, bass] }
 
       let!(:bundle_item) { contents.add(bundle.master, 5) }
       let!(:guitar_item) { contents.add(guitar, 3) }

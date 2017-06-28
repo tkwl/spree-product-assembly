@@ -7,7 +7,7 @@ RSpec.feature "Orders", type: :feature, js: true do
   given(:parts) { (1..3).map { create(:variant) } }
 
   background do
-    bundle.parts << [parts]
+    bundle.master.parts << [parts]
     line_item.update_attributes!(quantity: 3)
     order.reload.create_proposed_shipments
     order.finalize!

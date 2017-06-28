@@ -32,7 +32,7 @@ module Spree
 
         let(:bundle_item_quantity) { order.find_line_item_by_variant(bundle_variant).quantity }
 
-        before { bundle.parts << parts }
+        before { bundle.master.parts << parts }
 
         specify do
           expected_units_on_package = order.line_items.to_a.sum(&:quantity) - bundle_item_quantity + (bundle.parts.count * bundle_item_quantity)

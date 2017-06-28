@@ -11,12 +11,12 @@ describe Spree::Product, type: :model do
       @part2 = create(:product, can_be_part: true)
 
       create(:assemblies_part,
-        assembly: @product,
+        assembly: @product.master,
         part: @part1.master,
         count: 1
       )
       create(:assemblies_part,
-        assembly: @product,
+        assembly: @product.master,
         part: @part2.master,
         count: 4
       )

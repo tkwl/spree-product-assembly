@@ -20,23 +20,31 @@ module Spree
     private
 
     def attributes
-      part_options.reject {|k, v| k.to_sym == :variant_id}
+      part_options.reject {|k, v| k.to_sym == :part_id}
     end
 
     def given_id?
       part_options[:id].present?
     end
 
-    def product_id
-      product.id
+    def assembly_id
+      assembly.id
     end
 
     def part_id
-      variant.id
+      part.id
     end
 
-    def variant
-      Spree::Variant.find(part_options[:variant_id])
+    def assembly
+      Spree::Variant.find_by(id: part_options[:assembly_id])
+    end
+
+    def part
+      if part_options[:part_id]
+        Spree::Variant.find_by(id: part_options[:part_id])
+      else
+        product.master
+      end
     end
 
     def variant_selection_deferred?
@@ -54,7 +62,7 @@ module Spree
         else
           Spree::AssembliesPart.find_or_initialize_by(
             variant_selection_deferred: variant_selection_deferred?,
-            assembly_id: product_id,
+            assembly_id: assembly_id,
             part_id: part_id
           )
         end

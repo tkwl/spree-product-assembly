@@ -3,7 +3,8 @@
   	<tr>
   	  <th><%= Spree.t(:sku) %></th>
   		<th><%= Spree.t(:name) %></th>
-  		<th><%= Spree.t(:options) %></th>
+      <th><%= Spree.t(:options) %></th>
+      <th><%= Spree.t(:variant) %></th>
   		<th><%= Spree.t(:qty) %></th>
   	</tr>
   </thead>
@@ -13,6 +14,7 @@
         <td><%= part.sku %></td>
         <td><%= part.name %></td>
         <td><%= variant_options part %></td>
+        <td><%= variant_including_master_options part.assembly %></td>
         <td><%= text_field_tag :count, part.count, class: "form-control" %></td>
   	    <td class="actions">
           <%= image_tag "spinner.gif", :style => "display:none", :class => "spinner" %>

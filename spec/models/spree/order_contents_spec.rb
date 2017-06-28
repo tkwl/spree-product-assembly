@@ -6,7 +6,7 @@ describe Spree::OrderContents, type: :model do
         assembly = create(:product)
         pieces = create_list(:product, 2)
         pieces.each do |piece|
-          create(:assemblies_part, assembly: assembly, part: piece.master)
+          create(:assemblies_part, assembly: assembly.master, part: piece.master)
         end
 
         contents = described_class.new(order)

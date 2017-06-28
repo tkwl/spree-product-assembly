@@ -62,15 +62,17 @@ $(document).ready ->
     part.count = quantityField.val()
 
     if row.hasClass("with-variants")
-      selectedVariantOption = $('select option:selected', row)
-      part.variant_id = selectedVariantOption.val()
+      selectedVariantOption = $('select.part_selector option:selected', row)
+      part.part_id = selectedVariantOption.val()
 
       if selectedVariantOption.text() == Spree.translations.user_selectable
         part.variant_selection_deferred = "t"
-        part.variant_id = link.data("master-variant-id")
+        part.part_id = link.data("master-variant-id")
 
     else
-      part.variant_id = $('input[name="part[id]"]', row).val()
+      part.part_id = $('input[name="part[id]"]', row).val()
+
+    part.assembly_id = $('[name="part[assembly_id]"]', row).val()
 
     makePostRequest(link, {assemblies_part: part})
 
